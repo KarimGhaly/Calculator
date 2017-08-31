@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void BackspaceBTN(View view) {
         String TextView = Screenn.getText().toString();
-        if (TextView != null && TextView.length() > 0 && TextView.charAt(0) != '0') {
+
+        if (TextView != null && TextView.length() > 0) {
             TextView = TextView.substring(0, TextView.length() - 1);
             if (TextView.equals(""))
                 TextView = "0";
