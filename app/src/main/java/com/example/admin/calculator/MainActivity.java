@@ -1,6 +1,7 @@
 package com.example.admin.calculator;
 
 import android.graphics.Point;
+import android.icu.text.DecimalFormat;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
                     {
                         Screenn.setText(existData + btn.getText().toString());
                     }
-
-
                 }else
                 {
                     Screenn.setText(existData + btn.getText().toString());
                 }
             } else {
+                double Zero;
+
                 if (existData.equals("0")) {
                     Screenn.setText(btn.getText().toString());
                 } else {
@@ -171,15 +172,17 @@ public class MainActivity extends AppCompatActivity {
 
     public String Replace(String Screen, Double Result) {
         String NewEquation;
+        DecimalFormat decimalFormat = new DecimalFormat("######.####");
+        String Res = decimalFormat.format(Result);
         int screenLength = Screen.length();
         if (Begining <= 0 && End >= screenLength) {
-            NewEquation = Result.toString();
+            NewEquation = Res;
         } else if (Begining <= 0) {
-            NewEquation = Result.toString() + Screen.substring(End + 1, screenLength);
+            NewEquation = Res + Screen.substring(End + 1, screenLength);
         } else if (End >= screenLength) {
-            NewEquation = Screen.substring(0, Begining) + Result.toString();
+            NewEquation = Screen.substring(0, Begining) + Res;
         } else {
-            NewEquation = Screen.substring(0, Begining) + Result.toString() + Screen.substring(End + 1, screenLength);
+            NewEquation = Screen.substring(0, Begining) + Res + Screen.substring(End + 1, screenLength);
         }
 
         return NewEquation;
